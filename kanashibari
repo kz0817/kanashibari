@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+import sys
+import os
+import subprocess
+import syslog
+
+target_processes = ["chrome", "panel-"]
+
+def print_usage():
+  print "Usage"
+  print ""
+  print "  $ kanashibari [suspend|resume]"
+  print ""
+
+def suspend():
+  for target in target_processes:
+    subprocess.call(["pkill", "-SIGSTOP", target])
+  syslog.syslog("suspend");
+  print("suspend")
+
+def resume():
+  for target in target_processes:
+    subprocess.call(["pkill", "-SIGCONT", target])
+  syslog.syslog("resume");
+  print("resume")
+
+def auto_operation():
+  base_dir = "/proc/acpi/button/lid"
+  dirs = os.listdir(base_dir)
+  lid_path = None
+  for dirname in dirs:
+    path = base_dir + "/" + dirname + "/state"
+    if os.path.exists(path):
+      lid_path = path
+      break
+  if not lid_path:
+    "Not found a lid state path"
+    sys.exit(-1)
+  state = None
+  for line in open(lid_path, 'r'):
+    words = line.split()
+    if len(words) != 2:
+      print("Unexpected format: " + line)
+      sys.exit(-1)
+    break
+    state = words[1]
+  if state == "closed":
+    suspend()
+  else:
+    resume()
+
+if len(sys.argv) < 2:
+  auto_operation()
+  sys.exit(0)
+
+cmd = sys.argv[1]
+if cmd == "suspend":
+  suspend()
+elif cmd == "resume":
+  resume()
+else:
+  "Unknown command: " + cmd
+
