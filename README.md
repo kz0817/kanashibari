@@ -1,4 +1,7 @@
 kanashibari
 ===========
 
-A utility that resumes and suspend processes such as a web browser, which are working when the user is not used.
+A utility that suspends and resumes processes such as a web browser
+in order to save power consumption.
+Some processes are working in background when that are not used.
+
