@@ -42,8 +42,8 @@ def auto_operation():
     if len(words) != 2:
       print("Unexpected format: " + line)
       sys.exit(-1)
-    break
     state = words[1]
+    break
   if state == "closed":
     suspend()
   else:
