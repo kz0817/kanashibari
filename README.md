@@ -13,5 +13,5 @@ PC is closed/opened.
 On ubuntu 13.04, the following setting makes it active.
 
     # mkdir -p /etc/acpi/local
-    # ln -s <kanashibari_path> /etc/acpi/local/lid.sh.post
+    # ln -s <kanashibari_path> /etc/acpi/local/lid.sh.pre
 
