@@ -4,7 +4,7 @@ import os
 import subprocess
 import syslog
 
-target_processes = ["chrome", "panel-"]
+target_processes = ["chrome", "panel-", "firefox", "plugin-container"]
 
 def print_usage():
   print "Usage"
