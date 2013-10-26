@@ -13,5 +13,9 @@ PC is closed/opened.
 On ubuntu 13.04, the following setting makes it active.
 
     # mkdir -p /etc/acpi/local
-    # ln -s <kanashibari_path> /etc/acpi/local/lid.sh.pre
+    # ln -s <kanashibari_path>kanasihibari /etc/acpi/local/lid.sh.pre
 
+On ubuntu 13.10, the following setting makes it active.
+    # mkdir -p /etc/acpi/local
+    # ln -s <kanashibari_path>/events.lid /etc/acpi/events/lid
+    # ln -s <kanashibari_path>/kanshibari /etc/acpi/local/lid.py
